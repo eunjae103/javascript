@@ -11,6 +11,39 @@
     <input type="text">
     <button>입력</button>
 <script>
+const number = Number(prompt('몇명이참가하나요?'));
+const $button = document.querySelector('button');
+const $input = document.querySelector('input');
+const $word = document.querySelector('#word');
+const $order = document.querySelector('#order');
+let word; //제시어
+let newWord; //새로입력단어
+
+const onClickButton = () => {
+    if(!word||word[word.length - 1]=== newWord[0]&& newWord.length===3){ //제시어가 비어있는가?
+                //비어있다
+        word= newWord; // 입력한 단어가 제시어가 된다.
+        $word.textContent = word;
+        const order = Number($order.textContent);// 현재 순서
+        if(order + 1 > number){
+            $order.textContent = 1;
+        }else{
+            $order.textContent = order + 1;
+        }
+        $input.value= '';
+    }else{  
+// 비어있지않음
+            alert('올바르지않은단어입니다');
+        }
+        $input.value = '';
+        $input.focus();
+};
+
+const onInput = (event) =>{
+    newWord = event.target.value
+};
+$button.addEventListener('click',onClickButton);
+$input.addEventListener('input', onInput);
 
 </script>
 </body>
